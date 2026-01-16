@@ -1,4 +1,98 @@
----
-layout: home
-# Index page
----
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My Live Journal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* This makes the page look like a clean book/journal */
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .intro {
+            color: #666;
+            font-style: italic;
+        }
+        .journal-list {
+            list-style: none;
+            padding: 0;
+        }
+        .journal-entry {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .journal-entry:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .entry-date {
+            color: #888;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .entry-title {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .entry-title a {
+            text-decoration: none;
+            color: #222;
+        }
+        .entry-excerpt {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Personal Journal</h1>
+        <p class="intro">Documenting the journey.</p>
+    </header>
+
+    <main>
+        <ul class="journal-list">
+            {% for post in site.posts %}
+            <li class="journal-entry">
+                <div class="entry-date">{{ post.date | date: "%B %d, %Y" }}</div>
+                <h2 class="entry-title">
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                </h2>
+                <div class="entry-excerpt">
+                    {{ post.excerpt }}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+
+    <footer>
+        <hr>
+        <p style="text-align: center; font-size: 0.8em; color: #999;">
+            &copy; {{ site.time | date: '%Y' }} My Journal. Hosted on GitHub.
+        </p>
+    </footer>
+
+</body>
+</html>
